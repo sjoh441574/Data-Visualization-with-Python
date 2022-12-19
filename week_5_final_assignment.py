@@ -1,4 +1,5 @@
 # Import required libraries
+!pip install jupyter_dash
 import pandas as pd
 import dash
 from dash import dcc
@@ -92,7 +93,7 @@ app.layout = html.Div(children=[
                                         dcc.Dropdown(id='input-type',
                                                     options=[{'label':'Yearly Airline Performance Report', 'value': 'OPT1'},{'label': 'Yearly Airline Delay Report', 'value': 'OPT2'}],
                                                     placeholder= 'Select a report type.',
-                                                    style={'width': '100px', 'height': '3px', 'font-size': '20px', 'textAlign': 'center'})
+                                                    style={'width': '80px', 'height': '3px', 'font-size': '20px', 'textAlign': 'center'})
                                     # Place them next to each other using the division style
                                     ], style={'display':'flex'}),
                                     
@@ -157,7 +158,7 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             bar_fig = px.bar(bar_data, x='Month', y='Flights', color='CancellationCode', title='Monthly Flight Cancellation')
             
             # TODO5: Average flight time by reporting airline
-            line_fig= px.line(line_data, x='Month', y='Airline', color='Reporting_Airline', title='Average monthly flight time (minutes) by airline')
+            line_fig= px.line(line_data, x='Month', y='AirTime', color='Reporting_Airline', title='Average monthly flight time (minutes) by airline')
             
             # Percentage of diverted airport landings per reporting airline
             pie_fig = px.pie(div_data, values='Flights', names='Reporting_Airline', title='% of flights by reporting airline')
